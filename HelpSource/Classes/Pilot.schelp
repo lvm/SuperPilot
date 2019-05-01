@@ -1,0 +1,50 @@
+TITLE:: Pilot
+summary:: Event Type for for Pilot
+related:: Classes/Event
+categories:: Streams-Patterns-Events>Patterns
+
+description::
+
+Provides an Event type for Pilot Synthetiser.
+Can generate note messages and effect messages. Can be used together or separated.
+
+Examples::
+
+Regular messages
+
+code::
+(
+Pbind(
+  \type, \pilot,
+  \dur, 1,
+  \note, Pseq([0,3,7],inf),
+  \chan, 2,
+  \octave, Pseq([3,4,5].stutter(3),inf),
+  \amp, 0.5
+)
+
+// this should generate the following messages
+
+"23C8f", "23d8f", "23G8f",
+"24C8f", "24d8f", "24G8f",
+"25C8f", "25d8f", "25G8f",
+etc...
+::
+
+Effects messages.
+
+code::
+(
+Pbind(
+  \type, \pilot,
+  \dur, 1,
+  \revWet, 0.5,
+  \revDepth, 1.0,
+  \bitWet, 0.25,
+  \bitDepth, 0.65,
+)
+
+// this should generate the following messages
+
+"REV8f", "BIT4A", etc...
+::
